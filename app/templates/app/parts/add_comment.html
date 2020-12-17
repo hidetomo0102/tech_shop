@@ -1,0 +1,9 @@
+<h3 class="text-review-form">レビューを投稿</h3>
+<form action="{% url 'add_comment' item_data.slug  %}" method="post" class="post-form">
+    {% csrf_token %}
+    <p>
+        <label for="id_contents"></label>
+        <textarea name="contents" id="id_contents" cols="50" rows="10"></textarea>
+    </p>
+    <button class="save btn btn-outline-dark">送信</button>
+</form>

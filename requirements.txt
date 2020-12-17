@@ -1,0 +1,11 @@
+Django~=3.1.4
+django-allauth~=0.44.0
+django-widget-tweaks~=1.4.8
+stripe~=2.55.1
+Pillow~=8.0.1
+dj-database-url~=0.5.0
+mysqlclient~=2.0.2
+python-decouple~=3.3
+django-crispy-forms~=1.10.0
+django-storages~=1.10.1
+boto3~=1.16.37

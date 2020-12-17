@@ -1,0 +1,93 @@
+{% load cart_tags %}
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <style>
+        .logo {
+            font-family: 'Bangers', cursive;
+            color: white;
+            margin-right: 50px;
+        }
+        .detail {
+            font-family: 'Anton', sans-serif;
+            color: floralwhite;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/d46fb78087.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+        <div class="container">
+            <h1 class="logo">TECH SHOP</h1>
+            <span class="lite-text-sm detail">エンジニア向けECサイト</span>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">ホーム</a>
+                </li>
+                {% if user.is_authenticated and user.is_customer %}
+                <li class="nav-item">
+                    <a href="{% url 'profile' %}" class="nav-link">プロフィール</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'order' %}" class="nav-link">
+                        カート
+                        <span class="badge badge-pill badge-warning">
+                            {{ request.user | itemCount }}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'wishlist' %}" class="nav-link">欲しいものリスト</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'customer_logout' %}" class="nav-link">ログアウト</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'customer_login' %}" class="nav-link">ログイン</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'customer_signup' %}" class="nav-link">サインアップ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'supplier_login' %}" class="nav-link supplier-link">出品者ログイン</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'supplier_signup' %}" class="nav-link supplier-link">出品者サインアップ</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    </header>
+
+        <main>
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% block main_bottom %}
+            {% endblock %}
+        </main>
+
+    <footer class="py-2 bg-dark">
+        <p class="m-0 text-center text-white">Copyright &copy; Hidetomo Shimaoka</p>
+    </footer>
+
+    {% block extra_js %}
+
+    {% endblock %}
+
+</body>
+</html>

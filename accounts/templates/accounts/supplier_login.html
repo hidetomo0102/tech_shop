@@ -1,0 +1,26 @@
+{% extends 'app/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}出品者ログイン{% endblock %}
+
+{% block content %}
+
+    <div class="card card-auth my-5 mx-auto">
+        <div class="card-body">
+            <h5 class="card-title text-center">出品者ログイン</h5>
+            <form action="" method="post" class="form-auth">
+                {% csrf_token %}
+                <div class="form-label-group">
+                    <input type="email" name="email" maxlength="100" autofocus placeholder="メールアドレス" class="form-control" required id="id_email">
+                </div>
+                <div class="form-label-group">
+                    <input type="password" name="password" autocomplete="new-password" placeholder="パスワード" class="form-control" required id="id_password">
+                </div>
+                <div class="button mx-auto">
+                    <button class="btn btn-lg btn-primary btn-block mx-auto" type="submit">ログイン</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

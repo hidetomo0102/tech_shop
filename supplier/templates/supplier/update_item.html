@@ -1,0 +1,79 @@
+{% extends 'supplier/supplier_base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/item_form.css' %}">
+{% endblock %}
+{% block title %}出品アイテム更新{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="container">
+        <div class="headBox">
+            <h3 class="hdStyle01">商品情報を更新</h3>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <ul>
+                    <li class="title">
+                        <dl>
+                            <dt>
+                                タイトル
+                                <span>(100文字以内)</span>
+                            </dt>
+                            <dd>{{ form.title }}</dd>
+                        </dl>
+                    </li>
+                    <li class="price">
+                        <dl>
+                            <dt>
+                                金額
+                                <span>(円)</span>
+                            </dt>
+                            <dd>{{ form.price }}</dd>
+                        </dl>
+                    </li>
+                    <li class="description">
+                        <dl>
+                            <dt class="text-input">
+                                商品説明
+                            </dt>
+                            <dd>{{ form.description }}</dd>
+                        </dl>
+                    </li>
+                    <li class="slug">
+                        <dl>
+                            <dt>
+                                Slug
+                                <span>(英数字 | 50文字以内)</span>
+                            </dt>
+                            <dd>{{ form.slug }}</dd>
+                        </dl>
+                    </li>
+                    <li class="category">
+                        <dl>
+                            <dt>
+                                カテゴリー
+                                <span>(商品のカテゴリーを選択)</span>
+                            </dt>
+                            <dd>
+                                {{ form.category_tag }}
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="image">
+                        <dl>
+                            <dt>
+                                サムネイル画像
+                                <span>(商品イメージ)</span>
+                            </dt>
+                            <dd>{{ form.image }}</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <input type="submit" class="btn-flat-double-border" value="送信">
+        </form>
+    </div>
+</div>
+{% endblock %}

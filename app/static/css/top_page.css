@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #F1F1F1;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+.footerFixed {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+a.nav-link {
+    font-weight: bold;
+}
+
+nav.link-bar {
+    border-top: 1px solid #dcdacb;
+    background: #f6f6f6;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
+}
+
+.unstyled-list {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    list-style: none;
+}
+
+li.link-bar {
+    white-space: nowrap;
+    padding: .9rem 2.5rem;
+}
+
+a.lite-btn {
+    height: 4.8rem;
+    color: #3c3b37;
+    min-width: auto;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+span.lite-text-sm {
+    font-weight: bolder;
+}
+
+.card-profile {
+    width: 700px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0,0,0,0.1);
+}
+
+.button {
+    width: 150px;
+}
+
+.btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    font-weight: bold;
+}
+
+.profile_table {
+    width: 100%;
+    border: 1px solid #D1DBEB;
+    border-radius: 8px;
+    border-collapse: separate;
+    overflow: hidden;
+}
+
+.profile_table .header {
+    width: 200px;
+    padding: 16px 24px;
+    text-align: left;
+    background: #F1F5FA;
+}
+
+.profile_table .data {
+    padding: 16px 24px;
+}
+
+.form_wrap {
+    display: grid;
+    gap: 16px;
+}
+
+.form_wrap-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.card-auth {
+    width: 400px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-auth {
+    width: 100%;
+}
+
+.form-label-group {
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    border-radius: 2rem;
+}
+
+.itemlist img {
+    height: 150px;
+    object-fit: contain;
+}
+
+.btn-category-search {
+    border-radius: 3px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+}
+
+a.supplier-link {
+    color: palegreen;
+}

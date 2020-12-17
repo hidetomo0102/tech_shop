@@ -1,0 +1,82 @@
+{% load static %}
+{% load notification_tags %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+
+    {% block header %}{% endblock %}
+
+    <style>
+        .logo {
+            font-family: 'Bangers', cursive;
+            color: white;
+            margin-right: 50px;
+        }
+        .detail {
+            font-family: 'Anton', sans-serif;
+            color: floralwhite;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/d46fb78087.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
+        <div class="container">
+            <h1 class="logo">TECH SHOP</h1>
+            <span class="lite-text-sm detail">出品者メニュー</span>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{% url 'supplier:top' %}" class="nav-link">ホーム</a>
+                </li>
+                {% if user.is_supplier %}
+                <li class="nav-item">
+                    <a href="{% url 'supplier:create' %}" class="nav-link">新規出品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'supplier:order' %}" class="nav-link">
+                        注文確認
+                        <span class="badge badge-pill badge-warning">
+                            {{ request.user | orderCount }}
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'supplier_logout' %}" class="nav-link">ログアウト</a>
+                </li>
+                {% else %}
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    </header>
+
+        <main>
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% block main_bottom %}
+            {% endblock %}
+        </main>
+
+    <footer class="py-2 bg-dark">
+        <p class="m-0 text-center text-white">Copyright &copy; Hidetomo Shimaoka</p>
+    </footer>
+
+    {% block extra_js %}
+
+    {% endblock %}
+
+</body>
+</html>

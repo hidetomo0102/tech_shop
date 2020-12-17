@@ -1,0 +1,83 @@
+{% extends 'supplier/supplier_base.html' %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/item_form.css' %}">
+{% endblock %}
+{% block title %}新規出品フォーム{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="container">
+        <div class="headBox">
+            <h3 class="hdStyle01">商品情報を入力</h3>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <ul>
+                    <li class="title">
+                        <dl>
+                            <dt>
+                                タイトル
+                                <span>(100文字以内)</span>
+                            </dt>
+                            <dd><input type="text" name="title" placeholder="  記入例：MacBook Pro 13 inch" maxlength="100" class="tmp-title textInput" required="" id="id_title"></dd>
+                        </dl>
+                    </li>
+                    <li class="price">
+                        <dl>
+                            <dt>
+                                金額
+                                <span>(円)</span>
+                            </dt>
+                            <dd><input type="number" name="price" min="1" class="numberinput tmp-price" required="" id="id_price"></dd>
+                        </dl>
+                    </li>
+                    <li class="description">
+                        <dl>
+                            <dt class="text-input">
+                                商品説明
+                            </dt>
+                            <dd><textarea name="description" cols="80" rows="5" class="textarea" required="" id="id_description"></textarea></dd>
+                        </dl>
+                    </li>
+                    <li class="slug">
+                        <dl>
+                            <dt>
+                                Slug
+                                <span>(英数字 | 50文字以内)</span>
+                            </dt>
+                            <dd><input type="text" name="slug" placeholder=" 記入例：macbook_pro_13_inch" maxlength="50" class="textinput textInput" required="" id="id_slug"></dd>
+                        </dl>
+                    </li>
+                    <li class="category">
+                        <dl>
+                            <dt>
+                                カテゴリー
+                                <span>(商品のカテゴリーを選択)</span>
+                            </dt>
+                            <dd>
+                                <select name="category_tag" class="select" required="" id="id_category_tag">
+                                    {% for category_tag in category %}
+                                        <option value="{{ category_tag.id }}">{{ category_tag }}</option>
+                                    {% endfor %}
+                                </select>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="image">
+                        <dl>
+                            <dt>
+                                サムネイル画像
+                                <span>(商品イメージ)</span>
+                            </dt>
+                            <dd><input type="file" name="image" accept="image/*" class="clearablefileinput" required="" id="id_image"></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <input type="submit" class="btn-flat-double-border" value="送信">
+        </form>
+    </div>
+</div>
+{% endblock %}

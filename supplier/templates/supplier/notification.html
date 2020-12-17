@@ -1,0 +1,92 @@
+{% extends 'supplier/supplier_base.html' %}
+
+{% block title %}注文確認{% endblock %}
+
+{% block content %}
+
+    <div class="my-5">
+        <h3>注文確認</h3>
+    </div>
+
+    <div class="row order">
+        <div class="col-md-9 mb-5">
+            <div class="card">
+                <div class="card-body px-4 py-3">
+                    {% for order_item in order_items %}
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <img src="{{ order_item.item.image.url }}" alt="{{ order_item.item.title }}" class="img-fluid">
+                            </div>
+                        <div class="col-md-6">
+                            <h5>{{ order_item.item.title }}</h5>
+                            <div class="itemlist" style="margin-top: 30px">
+                                    <p>
+                                        注文時刻：
+                                        <span class="text-primary font-weight-bold">
+                                            {{ order_item.order.ordered_date }}
+                                        </span>
+                                    </p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <p>
+                                        購入者：
+                                        <span class="text-secondary font-weight-bold">
+                                            {{ order_item.order.user.last_name }} {{ order_item.order.user.first_name }}
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        住所：
+                                        <span class="text-secondary font-weight-bold">
+                                            {{ order_item.order.user.address }}
+                                        </span>
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        電話番号：
+                                        <span class="text-secondary font-weight-bold">
+                                            {{ order_item.order.user.tel }}
+                                        </span>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <div class="itemlist">
+                                <p>
+                                    価格：
+                                    <span class="text-danger font-weight-bold">
+                                        {{ order_item.get_total_order }}円
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="itemlist">
+                                <p>
+                                    数量：
+                                    <span class="text-dark font-weight-bold">
+                                        {{ order_item.quantity }}
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="itemlist">
+                                <a href="{% url 'supplier:order_check' order_item.id %}" class="btn btn-outline-warning btn-wish" onclick="this.disabled = true;">通知を確認</a>
+                            </div>
+                        </div>
+                        </div>
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+
+                        {% empty %}
+                        <p class="mb-3">注文通知はありません。</p>
+                        <a href="{% url 'supplier:top' %}" class="btn btn-outline-primary btn-wish">トップへ戻る</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
