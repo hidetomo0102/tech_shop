@@ -220,10 +220,12 @@ span.lite-text-sm {
     }
     section.review-list {
         width: 80%;
+        margin: auto;
     }
     section.review-side {
         width: 100%;
     }
+
 }
 
 .btn-secondary {
@@ -242,6 +244,18 @@ textarea {
     border: 2px solid lightslategray;
 }
 
+@media screen and (max-width: 800px) {
+    .card-auth {
+        width: 100%;
+    }
+    .card-profile {
+        width: 100%;
+    }
+    .profile_table .header {
+        width: 130px;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .wrapper {
         display: block;
@@ -252,9 +266,27 @@ textarea {
         display: block;
         margin: 0 auto;
     }
+
     section.review-side {
         width: 100%;
         display: block;
         margin: 0 auto;
+    }
+
+    .card-auth {
+        width: 100%;
+    }
+
+    .card-profile {
+        width: 100%;
+    }
+
+    .profile-padding {
+        padding: 1rem;
+    }
+
+    .profile_table .header {
+        padding: 8px 12px;
+        width: 50px;
     }
 }

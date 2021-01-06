@@ -1,5 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .main {
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
 }
 
 
@@ -14,12 +24,18 @@ ul {
     list-style: none;
 }
 
+ul.list-form {
+    list-style: none;
+    width: 100%;
+}
+
 li {
     margin-bottom: 5px;
 }
 
 dl {
     display: flex;
+    width: 100%;
 }
 
 dt {
@@ -32,6 +48,19 @@ dt.text-input {
 
 dd {
     margin: 8px;
+    width: 80%;
+}
+
+input {
+    float: left;
+}
+
+input.btn-flat-double-border {
+    float: none;
+}
+
+select {
+    float: left;
 }
 
 span {
@@ -64,26 +93,31 @@ span {
 }
 
 .form-row ul li > dl > dt {
-    width: 220px;
+    width: 180px;
     background: #E6EBF1;
     display: inline-block;
     vertical-align: top;
 }
 
 .form-row .title dl dd input[type="text"] {
-    width: 550px;
+    width: 100%;
     border: 2px solid #dddddd;
 }
 
 .form-row .slug dl dd input[type="text"] {
-    width: 300px;
+    width: 100%;
     border: 2px solid #dddddd;
 }
 
 .form-row dl dd input[type="text"] {
     height: 30px;
+    width: 100%;
     padding: 2px 10px;
     font-size: 15px;
+}
+
+input[type="title"] {
+    width: 100%;
 }
 
 input[type="number"] {
@@ -93,6 +127,8 @@ input[type="number"] {
 
 textarea {
     border: 2px solid #dddddd;
+    width: 100%;
+    height: 100%;
 }
 
 select.select {
@@ -112,4 +148,25 @@ select.select {
 
 .btn-flat-double-border :hover {
     background: dodgerblue;
+}
+
+@media screen and (max-width: 560px) {
+    dl {
+        display: block;
+    }
+    dd {
+        width: 90%;
+    }
+    input {
+        float: none;
+    }
+    input.clearablefileinput {
+        flex-direction: column;
+    }
+    select {
+        float: none;
+    }
+    select.select {
+        width: 90%;
+    }
 }

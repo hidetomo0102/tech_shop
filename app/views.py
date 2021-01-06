@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import View, ListView
@@ -84,7 +85,7 @@ class ItemDetailView(View):
         })
 
 
-@login_required
+@login_required(login_url='/accounts/login/customer/')
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
 
@@ -256,7 +257,7 @@ class WishListView(LoginRequiredMixin, View):
             return render(request, 'app/wishlist.html')
 
 
-@login_required
+@login_required(login_url='/accounts/login/customer/')
 def wishlist_to_cart(request, slug):
     add_to_cart(request, slug)
 
