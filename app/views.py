@@ -18,7 +18,7 @@ from .forms import CommentForm
 
 import stripe
 
-
+# トップページに商品のリストを表示する（ページネーション・検索にも対応させる）
 class IndexView(View):
     def get(self, request, num=1, *args, **kwargs):
 
@@ -52,6 +52,7 @@ class IndexView(View):
         })
 
 
+# カテゴリーで商品を絞る
 def category(request, category, num=1):
     category_list = Category.objects.all()
     category = Category.objects.get(name=category)
@@ -74,6 +75,7 @@ def category(request, category, num=1):
     })
 
 
+# 商品の詳細を表示する
 class ItemDetailView(View):
     def get(self, request, *args, **kwargs):
         item_data = Item.objects.get(slug=self.kwargs['slug'])
@@ -85,6 +87,7 @@ class ItemDetailView(View):
         })
 
 
+ # カートへ追加する
 @login_required(login_url='/accounts/login/customer/')
 def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -105,6 +108,7 @@ def add_to_cart(request, slug):
     return redirect('order')
 
 
+# カートの画面（カートの小計を計算して表示）
 @method_decorator(login_required, name='dispatch')
 class CartView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -122,6 +126,7 @@ class CartView(LoginRequiredMixin, View):
             return render(request, 'app/order.html')
 
 
+# カートの特定商品を一括削除
 @login_required
 def full_remove(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -132,6 +137,7 @@ def full_remove(request, slug):
     return redirect('order')
 
 
+# カートの特定商品を1個分削除
 @login_required
 def single_remove(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -146,6 +152,7 @@ def single_remove(request, slug):
     return redirect('order')
 
 
+# 注文画面を表示
 @method_decorator(login_required, name='dispatch')
 class OrderView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -159,6 +166,7 @@ class OrderView(LoginRequiredMixin, View):
             return render(request, 'app/order.html')
 
 
+# 支払い画面を表示（StripeAPIでカード情報を取得）
 @method_decorator(login_required, name='dispatch')
 class PaymentView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -211,12 +219,14 @@ class PaymentView(LoginRequiredMixin, View):
         return redirect('thanks')
 
 
+# 支払い処理が終わった後の画面
 @method_decorator(login_required, name='dispatch')
 class ThanksView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'app/thanks.html')
 
 
+# 欲しいものリストへ追加する
 @login_required
 def add_to_wishlist(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -234,6 +244,7 @@ def add_to_wishlist(request, slug):
     return redirect('product', slug=slug)
 
 
+# 欲しいものリストから削除
 @login_required
 def delete_from_wishlist(request, slug):
     item = get_object_or_404(Item, slug=slug)
@@ -244,6 +255,7 @@ def delete_from_wishlist(request, slug):
     return redirect('wishlist')
 
 
+# 欲しいものリストの画面
 @method_decorator(login_required, name='dispatch')
 class WishListView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -257,6 +269,7 @@ class WishListView(LoginRequiredMixin, View):
             return render(request, 'app/wishlist.html')
 
 
+# 欲しいものリスト→カートへ追加（カートへ追加したらリストからは削除）
 @login_required(login_url='/accounts/login/customer/')
 def wishlist_to_cart(request, slug):
     add_to_cart(request, slug)
@@ -269,6 +282,7 @@ def wishlist_to_cart(request, slug):
     return redirect('order')
 
 
+# 商品のレビューを投稿
 @login_required
 def add_comment(request, slug):
     item = get_object_or_404(Item, slug=slug)
