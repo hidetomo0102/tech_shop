@@ -5,6 +5,7 @@ from app.models import OrderItem, Order
 register = template.Library()
 
 
+# 自分の商品の注文をカウントする（通知を確認したら消す）
 @register.filter(name='orderCount')
 def orderCount(user):
     if user.is_authenticated:
