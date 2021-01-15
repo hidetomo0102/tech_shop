@@ -14,6 +14,7 @@ from accounts.forms import ProfileForm, UserSignupForm, LoginForm, SupplierSignU
 from allauth.account import views
 
 
+# プロフィール画面
 @method_decorator(login_required, name='dispatch')
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -24,6 +25,7 @@ class ProfileView(LoginRequiredMixin, View):
         })
 
 
+# プロフィールの編集画面
 @method_decorator(login_required, name='dispatch')
 class ProfileEditView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -56,6 +58,7 @@ class ProfileEditView(LoginRequiredMixin, View):
         })
 
 
+# ログアウト画面
 @method_decorator(login_required, name='dispatch')
 class LogoutView(views.LogoutView):
     template_name = 'accounts/logout.html'
@@ -66,6 +69,7 @@ class LogoutView(views.LogoutView):
         return redirect('/')
 
 
+# カスタマーの登録画面
 class CustomerSignupView(CreateView):
     model = User
     template_name = 'accounts/customer_signup.html'
@@ -82,6 +86,7 @@ class CustomerSignupView(CreateView):
         return redirect('index')
 
 
+#　サプライヤーの登録画面
 class SupplierSignUpView(CreateView):
     model = User
     template_name = 'accounts/supplier_signup.html'
@@ -98,6 +103,7 @@ class SupplierSignUpView(CreateView):
         return redirect('supplier:top')
 
 
+# カスタマーのログイン
 def customer_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -120,6 +126,7 @@ def customer_login(request):
         return render(request, 'accounts/customer_login.html', context)
 
 
+# サプライヤーのログイン
 def supplier_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -142,6 +149,7 @@ def supplier_login(request):
         return render(request, 'accounts/supplier_login.html', context)
 
 
+# サプライヤーのログアウト画面
 @method_decorator(supplier_required, name='dispatch')
 class SupplierLogoutView(views.LogoutView):
     template_name = 'supplier/logout.html'
