@@ -113,6 +113,7 @@ class SupplierItemCreateView(CreateView, LoginRequiredMixin):
         return context
 
 
+# 注文が入ったら通知する
 @supplier_required
 def order_notification(request):
     supplier = Supplier.objects.get(user=request.user)
@@ -122,6 +123,7 @@ def order_notification(request):
     return render(request, 'supplier/notification.html', {'order_items': order_items.order_by('-order__ordered_date')})
 
 
+# 注文を確認する
 @supplier_required
 def order_check(request, id):
 
