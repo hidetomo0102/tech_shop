@@ -1,0 +1,23 @@
+from django.test import LiveServerTestCase
+from django.urls import reverse_lazy
+
+from selenium import webdriver
+
+
+class LoginTest(LiveServerTestCase):
+    def setup(self):
+        self.driver = webdriver.Chrome(executable_path="../chromedriver")
+
+    def teardown(self):
+        self.driver.quit()
+
+    def test_login(self):
+        self.driver.get("http://tech-shop.website" + str(reverse_lazy("customer_login")))
+
+        user_email = self.driver.find_element_by_name("email")
+        user_email.send_keys(config('EMAIL_FOR_TEST'))
+        user_password = self.driver.find_element_by_name("password")
+        user_password.send_keys(config('PASS_FOR_TEST'))
+        self.driver.find_element_by_class_name("btn btn-lg btn-primary btn-block mx-auto").click()
+
+        self.assertEqual("TECH SHOP ホーム", self.driver.title)
