@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    container_name: tech_ec
+    build: .
+    volumes:
+    - .:/code
+    ports:
+    - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+  db:
+    image: mysql5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: django-db
+      MYSQL_USER: django
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
