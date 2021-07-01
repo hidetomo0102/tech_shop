@@ -10,8 +10,6 @@
 <h3>サプライヤートップ</h3>
 <img width="800" alt="サプライヤートップ" src="https://user-images.githubusercontent.com/66961071/104279899-677b1000-54ee-11eb-9bbf-e56d19c8ef59.png">
 （カスタマーの注文が入ったため、右上の『注文確認』ボタンに通知が来ています）
-<h1>URL</h1>
-<a href="http://tech-shop.website/" rel="nofollow">http://tech-shop.website</a>
 <br>
 
 <h1>使用技術</h1>
